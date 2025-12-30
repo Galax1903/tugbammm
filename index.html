@@ -17,11 +17,26 @@ html, body {
 
 body {
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+}
+
+/* FOTOĞRAF ARKA PLAN (BLUR HAFİFLENDİ) */
+.photo-bg {
+    position: fixed;
+    inset: 0;
+    background: url("https://i.ibb.co/4wSdMdKg/605214818-1823416328324270-6773646148379027729-n.jpg") center / cover no-repeat;
+    filter: blur(4px); /* Blur hafifletildi */
+    transform: scale(1.1);
+    animation: slowZoom 20s ease-in-out infinite alternate;
+    z-index: 0;
+}
+
+@keyframes slowZoom {
+    from { transform: scale(1.05); }
+    to   { transform: scale(1.15); }
 }
 
 /* Arka plan animasyon katmanı */
@@ -124,7 +139,10 @@ button:hover {
 
 <body>
 
-<!-- ARKA PLAN EFEKTLER -->
+<!-- FOTOĞRAF -->
+<div class="photo-bg"></div>
+
+<!-- KALP + TUĞBA -->
 <div class="effects-bg" id="effects"></div>
 
 <div class="container">
@@ -159,7 +177,7 @@ button:hover {
 <script>
 const isMobile = window.innerWidth < 768;
 
-/* ROMANTİK TAM EKRAN KONFETİ */
+/* TAM EKRAN KONFETİ */
 function fireConfetti(extra = false) {
     const duration = extra ? 3000 : 1800;
     const end = Date.now() + duration;
@@ -181,7 +199,7 @@ function fireConfetti(extra = false) {
     })();
 }
 
-/* KALP + TUĞBA YAZISI ÜRETİCİ */
+/* KALP + TUĞBA */
 function createFloatingEffects() {
     const container = document.getElementById("effects");
 
